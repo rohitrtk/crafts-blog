@@ -1,0 +1,17 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import HomeSectionLayout from "@layouts/HomeSectionLayout.astro";
+
+import "@styles/global.css";
+---
+<MainLayout selectedIndex={0}>
+	<HomeSectionLayout sectionBackgroundColor="bg-cyan-100" imgSrc="/img/pencils.png">
+		<p class="font-bold text-2xl lg:text-6xl md:text-5xl sm:text-4xl p-20">We're a <span class="blur-[10px]">Fucking</span> Crafts Site.</p>
+	</HomeSectionLayout>
+	<HomeSectionLayout sectionBackgroundColor="bg-violet-100" imgSrc="/img/brushes.png" imgClass="self-start">
+		<p class="font-bold text-2xl lg:text-6xl md:text-5xl sm:text-4xl p-20">We Make Cool Stuff.</p>
+	</HomeSectionLayout>
+	<HomeSectionLayout sectionBackgroundColor="bg-rose-100" imgSrc="/img/supplies.png">
+		<p class="font-bold text-2xl lg:text-6xl md:text-5xl sm:text-4xl p-20">Check Out Our Blog.</p>
+	</HomeSectionLayout>
+</MainLayout>

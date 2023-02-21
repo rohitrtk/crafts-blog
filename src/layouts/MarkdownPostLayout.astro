@@ -1,0 +1,17 @@
+---
+import MainLayout from "./MainLayout.astro";
+import Navbar from "@components/Navbar.astro";
+
+const { frontmatter } = Astro.props;
+---
+<MainLayout selectedIndex={2}>
+  <div class="justify-center text-center">
+    <h1 class="text-6xl">{frontmatter.title}</h1>
+    <p class="text-2xl">By {frontmatter.author}</p>
+    <p>{frontmatter.pubDate}</p>
+    <img src={frontmatter.image.url} />
+  </div>
+  <div>
+    <slot/>
+  </div>
+</MainLayout>

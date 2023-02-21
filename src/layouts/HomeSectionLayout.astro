@@ -1,0 +1,13 @@
+---
+export interface Props {
+  sectionBackgroundColor: string;
+  imgSrc: string;
+  imgClass?: string;
+}
+
+const { sectionBackgroundColor, imgSrc, imgClass="self-center" } = Astro.props as Props;
+---
+<section class={`flex flex-col justify-end min-h-[400px] text-center ${sectionBackgroundColor}`}>
+  <slot />
+  <img class={imgClass} src={imgSrc} />
+</section>

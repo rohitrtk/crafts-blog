@@ -7,7 +7,7 @@ const posts = await Astro.glob("./posts/*.md");
 <MainLayout selectedIndex={2}>
   <div class="flex flex-col [&>*:nth-child(3n+1)]:bg-cyan-100 [&>*:nth-child(3n+2)]:bg-violet-100 [&>*:nth-child(3n)]:bg-rose-100">
     {
-      posts.map(post => {
+      posts.reverse().map(post => {
         const { url, frontmatter } = post;
         const { title, description, image, author } = frontmatter;
         return <div class="min-h-[400px] p-10">

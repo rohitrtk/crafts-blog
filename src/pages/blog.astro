@@ -1,6 +1,6 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
-import Card from "@components/Card.astro";
+import BlogLayout from "@layouts/Sections/BlogLayout.astro";
 
 const posts = await Astro.glob("./posts/*.md");
 ---
@@ -11,7 +11,7 @@ const posts = await Astro.glob("./posts/*.md");
         const { url, frontmatter } = post;
         const { title, description, image, author } = frontmatter;
         return <div class="min-h-[400px] p-10">
-          <Card title={title} desc={description} imgUrl={image.url} postUrl={url!!} author={author}/>  
+          <BlogLayout title={title} desc={description} imgUrl={image.url} postUrl={url!!} author={author} />
         </div>
       })
     }

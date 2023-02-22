@@ -1,0 +1,25 @@
+---
+interface Props {
+  images: string[];
+  nCols: number;
+  useGrid?: boolean;
+}
+
+const { images, nCols = 3, useGrid = true } = Astro.props as Props;
+---
+{
+  useGrid ? 
+    <section class={`grid grid-cols-${nCols} py-10 justify-items-center`}>
+    {
+      images.map(url => 
+        <img class="h-[400px] w-[300px]" src={url} />
+      )
+    }
+    </section>
+  :
+    images.map(url => 
+      <section class="flex p-10 justify-center align-middle">
+        <img class="h-[800px] w-[600px]" src={url}/>
+      </section>
+    )
+}

@@ -1,5 +1,6 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
+import GalleryLayout from "@layouts/Sections/GalleryLayout.astro";
 
 const items = await Astro.glob("../../public/img/crafts/*.jpg");
 const nItems = items.length;
@@ -9,29 +10,13 @@ const nRows = Math.ceil(nItems / nCols);
 <MainLayout selectedIndex={1}>
   <div class="flex flex-col ">
     <div class="visible sm:hidden [&>*:nth-child(3n+1)]:bg-cyan-100 [&>*:nth-child(3n+2)]:bg-violet-100 [&>*:nth-child(3n)]:bg-rose-100">
-      {
-        [...new Array(nItems).keys()].map((n) => {
-          return <section class="flex p-10 justify-center align-middle">
-            <img class="h-[800px] w-[600px]" src={`/img/crafts/${n + 1}.jpg`} />
-          </section>
-        })
-      }  
+      <GalleryLayout useGrid={false} nCols={1} images={items.map(item => item.default)}/> 
     </div>
     <div class="collapse sm:visible flex flex-col [&>*:nth-child(3n+1)]:bg-cyan-100 [&>*:nth-child(3n+2)]:bg-violet-100 [&>*:nth-child(3n)]:bg-rose-100">
       {
-        [...new Array(nRows).keys()].map((n) => {
-          return <section class="grid grid-cols-3 py-10 justify-items-center">
-            {
-              [
-                3*n, 
-                3*n+1 < nItems ? 3*n+1 : null, 
-                3*n+2 < nItems ? 3*n+2 : null
-              ].map((m: number | null) => {
-                //return m !== null ? <img class="h-[400px] w-[300px]" src={`/img/crafts/${m + 1}.jpg`} /> : null
-                return <img class="h-[400px] w-[300px]" src={`/img/crafts/${m! + 1}.jpg`} />
-              })
-            }
-          </section>   
+        [...new Array(nRows).keys()].map((n: number) => {
+          const slice = items.slice(nCols * n, nCols * (n + 1)).map((r) => r.default);
+          return <GalleryLayout nCols={nCols} images={slice} />
         })
       }
     </div>
